@@ -1,3 +1,4 @@
+import { Footer } from "../components/footer";
 import { Navbar } from "../components/navbar";
 
 export default function Offers() {
@@ -7,6 +8,7 @@ export default function Offers() {
       <main>
         <h1>Offers</h1>
       </main>
+      <Footer />
     </>
   );
 }

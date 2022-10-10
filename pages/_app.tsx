@@ -1,10 +1,14 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { AddressProvider } from "../hooks/useAddress";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // Allows for eslint to ignore NextJS page configuration
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <Component {...pageProps} />;
+  return (
+    <AddressProvider>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+      <Component {...pageProps} />
+    </AddressProvider>
+  );
 }
 
 export default MyApp;

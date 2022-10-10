@@ -14,6 +14,8 @@
     "import/prefer-default-export": "off",
     //allows jsx in tsx
     "react/react-in-jsx-scope": "off",
-    "react/jsx-filename-extension": "off"
+    "react/jsx-filename-extension": "off",
+    // allow axios require
+    "global-require": 0 
   }
 }
