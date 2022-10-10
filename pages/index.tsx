@@ -9,29 +9,29 @@ export default function Home() {
   const [errorMessage, setErrorMessage] = useState<string>("");
   const { getApiData } = useCep();
 
+  // Router para enviar o usuário para a página principal após inserir o cep corretamente.
   const router = useRouter();
 
+  // Context com endereço.
   const { updateAddress } = useContext(AddressContext);
 
   async function getAddress(event: FormEvent) {
     event.preventDefault();
 
-    try {
-      const newAddress = await getApiData(cep);
-
-      updateAddress(newAddress);
-
-      setCep("");
-
-      router.push("/home");
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
+    getApiData(cep)
+      .then((newAddress) => {
+        updateAddress(newAddress);
+        setCep("");
+        router.push("/home");
+      })
+      .catch((error) => {
+        setErrorMessage(error.message);
+      });
   }
   return (
     <div className="h-screen">
       <Head>
-        <title>Omnet - Fibra óptica</title>
+        <title>OmniNet - Fibra óptica</title>
         <meta name="author" content="Estevão Gomes" />
         <meta
           name="description"
@@ -40,32 +40,39 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="mt-4 h-fit text-center">
-        <h1 className="">Bem vindo a OmNet, a sua Fibra ótica!</h1>
-        <h2>Para começar, digite seu CEP abaixo.</h2>
-        <form onSubmit={getAddress}>
-          <label htmlFor="cep">
-            CEP:
-            <input
-              name="cep"
-              id="cep"
-              value={cep}
-              onChange={(inputData) => setCep(inputData.currentTarget.value)}
-              type="tel"
-              required
-              pattern="\d{8}"
-              className="mx-4 w-max border-2"
-              placeholder="Digite seu CEP sem o traço."
-            />
-          </label>
+      <main className="flex h-screen items-center justify-center bg-blue-500 text-center">
+        <div className="h-fit w-fit rounded-md bg-white p-4">
+          <h1 className="text-3xl font-bold">
+            Bem vindo a OmniNet, a sua Fibra ótica!
+          </h1>
+          <h2 className="my-2 text-xl">Para começar, digite seu CEP abaixo:</h2>
+          <form onSubmit={getAddress}>
+            <label htmlFor="cep">
+              CEP:
+              <input
+                name="cep"
+                id="cep"
+                value={cep}
+                onChange={(inputData) => setCep(inputData.currentTarget.value)}
+                type="tel"
+                required
+                pattern="\d{8}"
+                className="mx-4 w-max border-2"
+                placeholder="Digite seu CEP sem o traço."
+              />
+            </label>
 
-          <button className="border-2" type="submit">
-            Entrar
-          </button>
-          {errorMessage && (
-            <span className="text-sm text-red-500"> {errorMessage}</span>
-          )}
-        </form>
+            <button
+              className="rounded-md border-2 border-blue-300 p-2 transition-all duration-300 hover:border-blue-500 hover:bg-blue-300 hover:text-white"
+              type="submit"
+            >
+              Entrar
+            </button>
+            {errorMessage && (
+              <p className="text-sm text-red-500"> {errorMessage}</p>
+            )}
+          </form>
+        </div>
       </main>
     </div>
   );

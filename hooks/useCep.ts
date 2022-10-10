@@ -4,16 +4,20 @@ export function useCep(){
         const axios = require('axios').default
 
         const address = axios.get(`https://viacep.com.br/ws/${cep}/json`)
-        // eslint-disable-next-line 
-        .then((response)=> { 
-            const data = {"bairro": response.data.bairro,
+        .then((response)=> {
+            if(response.data.erro === "true"){
+                throw new Error("Erro: CEP não encontrado.")
+            }
+
+            const addressData = {"bairro": response.data.bairro,
             "cidade": response.data.localidade,
             "estado":response.data.uf}
 
-            return data
-        })
-        // eslint-disable-next-line 
-        .catch((error)=>console.log(error.message))
+            return addressData
+        })  
+        .catch((error)=>{
+            throw new Error(error.message)}
+        )
         
         return address
 
