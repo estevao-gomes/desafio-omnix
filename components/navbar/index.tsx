@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { AddressContext } from "../../hooks/useAddress";
 
@@ -7,10 +8,16 @@ interface ListItemProps {
   route: string;
 }
 
+// Link para
 function ListItem({ content, route }: ListItemProps) {
+  const router = useRouter();
   return (
-    <li className="rounded-md bg-blue-400 p-2 font-bold hover:cursor-pointer hover:opacity-80 active:border-t-2 active:border-white active:underline">
-      <Link href={route} className="hover:opacity-80 active:opacity-80">
+    <li
+      className={`rounded-md bg-blue-400 p-2 font-bold hover:cursor-pointer hover:opacity-80 ${
+        router.pathname === route ? "border-t-2 border-white underline" : ""
+      }`}
+    >
+      <Link href={route} className="hover:opacity-80">
         {content}
       </Link>
     </li>
@@ -22,6 +29,8 @@ export function Navbar() {
     { route: "/home", content: "Home" },
     { route: "/offers", content: "Ofertas" },
   ];
+
+  // Função para gerar key única para cada item da navbar.
   function generateKey(pre: string) {
     return `${pre}_${new Date().getTime()}`;
   }

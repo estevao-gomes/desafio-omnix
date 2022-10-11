@@ -7,12 +7,14 @@ interface CardProps {
 }
 
 export function Card({ title, price, features }: CardProps) {
+  // Função para gerar uma key única para cada item da lista.
   function generateKey(pre: string) {
     return `${pre}_${new Date().getTime()}`;
   }
 
   return (
     <div className="h-full rounded-md border-2 border-blue-200 p-2 shadow-xl md:p-8">
+      {/* O id "shadow" adiciona sombra nas letrar. Tailwind não fornece opção para isso. */}
       <h2
         id="shadow"
         className="text-base font-semibold text-blue-400 md:text-lg lg:text-5xl"
@@ -20,6 +22,7 @@ export function Card({ title, price, features }: CardProps) {
         {title}
       </h2>
       <h3 className="my-2 text-lg font-semibold">
+        {/* Formata o preço em reais. */}
         {new Intl.NumberFormat("pt-BR", {
           style: "currency",
           currency: "BRL",

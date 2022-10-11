@@ -1,5 +1,6 @@
 import { useState, createContext, ReactNode } from "react";
 
+// Usando apenas os dados necessários da API.
 interface AddressType {
   bairro: string;
   cidade: string;
@@ -16,6 +17,7 @@ interface Props {
   children: ReactNode;
 }
 
+// Criando o context para o endereço, a ser passado para as páginas.
 export const AddressContext = createContext({} as contextType);
 
 export function AddressProvider({ children }: Props) {

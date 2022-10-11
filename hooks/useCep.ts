@@ -14,7 +14,8 @@ export function useCep(){
             "estado":response.data.uf}
 
             return addressData
-        })  
+        })
+        // Retornando erro para caso a api não encontre o CEP fornecido.  
         .catch((error)=>{
             throw new Error(error.message)}
         )
