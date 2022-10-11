@@ -30,7 +30,9 @@ export function Navbar() {
   return (
     <nav className="flex w-screen items-center bg-blue-500 py-2 font-sans text-white">
       <h1 className="ml-2 mr-auto">
-        {address.bairro}, {address.cidade}, {address.estado}
+        {address
+          ? `${address.bairro}, ${address.cidade}, ${address.estado}`
+          : "Endereço não fornecido"}
       </h1>
       <ul className="mr-4 flex w-full items-center justify-end gap-4 pr-4">
         {navItems.map((item, index) => (

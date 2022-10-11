@@ -16,15 +16,10 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main>
-        <section className="m-8 flex">
+      <main className="flex h-[83vh] items-center justify-center">
+        <section className="m-8 gap-24 md:flex">
           <div className="flex-1">
-            <Image
-              src="/Hero.jpg"
-              height="500"
-              width="800"
-              layout="responsive"
-            />
+            <Image src="/Hero.jpg" height="600" width="1000" />
           </div>
           <div className="flex-1 p-4">
             <h1 className="text-5xl font-bold text-blue-500">
