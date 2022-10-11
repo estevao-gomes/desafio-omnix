@@ -3,7 +3,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="flex h-fit w-screen items-center justify-end bg-blue-500 py-1 text-center font-sans text-sm font-semibold text-white">
-      <p className="mr-auto ml-2">
+      <p className="mr-auto ml-2 w-min">
         Feito por Estevão Gomes para Omnix Digital Experience.
       </p>
       <Link href="/">

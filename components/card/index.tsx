@@ -21,7 +21,7 @@ export function Card({ title, price, features }: CardProps) {
       >
         {title}
       </h2>
-      <h3 className="my-2 text-lg font-semibold">
+      <h3 className="my-2 font-semibold md:text-lg">
         {/* Formata o preço em reais. */}
         {new Intl.NumberFormat("pt-BR", {
           style: "currency",
@@ -31,10 +31,15 @@ export function Card({ title, price, features }: CardProps) {
       <ul className="p-4">
         {features.map((feature, index) => (
           <li
-            className="flex items-center gap-4 text-sm md:text-base"
+            className="flex items-center text-sm md:gap-4 md:text-base"
             key={generateKey(`Li_${index}`)}
           >
-            <Check size={24} color="#008000" weight="bold" />
+            <Check
+              className="hidden md:block"
+              size={24}
+              color="#008000"
+              weight="bold"
+            />
             {feature}
           </li>
         ))}
