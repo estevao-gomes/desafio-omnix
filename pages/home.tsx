@@ -19,7 +19,12 @@ export default function HomePage() {
       <main className="flex h-[83vh] items-center justify-center">
         <section className="m-8 gap-24 md:flex">
           <div className="flex-1">
-            <Image src="/Hero.jpg" height="600" width="1000" />
+            <Image
+              alt="Image of a man using the internet on his computer."
+              src="/Hero.jpg"
+              height="600"
+              width="1000"
+            />
           </div>
           <div className="flex-1 p-4">
             <h1 className="text-5xl font-bold text-blue-500">
